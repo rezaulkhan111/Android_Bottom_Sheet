@@ -1,13 +1,6 @@
 <resources>
     <string name="app_name">Android_Bottom_Sheet</string>
-    <string name="share">Share</string>
-    <string name="get_link">Get link</string>
-    <string name="make_a_copy">Make a Copy</string>
-    <string name="email_a_copy">Email a Copy</string>
-    <string name="preview">Preview</string>
-    <string name="adu">TODO</string>
-    <string name="gadu">TODO</string>
-    <string name="padu">TODO</string>
-    <string name="jadu">TODO</string>
     <string name="todo">TODO</string>
+    <string name="power_by_text">Power By</string>
+    <string name="machine_code_inc_text">Machine Code.inc</string>
 </resources>

@@ -1,159 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="220dp"
-    android:id="@+id/bs_bbbbbbbbbb"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bs_bbbbbbbbbb"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:paddingBottom="8dp"
     android:paddingTop="8dp"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
-    <!-- NOTE: This list should be displayed in a list
-    instead of nested layouts -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_author_header"
+        android:layout_width="248dp"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/power_by_text"
+        android:textAlignment="center"
+        android:textColor="#e860e32c"
+        android:textSize="20sp" />
 
-        android:paddingTop="8dp"
-        android:focusable="true">
+    <TextView
+        android:id="@+id/tv_author_name"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_author_header"
+        android:layout_centerHorizontal="true"
+        android:text="@string/machine_code_inc_text"
+        android:textAlignment="center"
+        android:textColor="#e860e32c"
+        android:textSize="20sp" />
+
+    <FrameLayout
+        android:id="@+id/fl_image_layout"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="32dp"
-            android:tint="#737373"
-            android:contentDescription="@string/todo"
-            android:layout_marginEnd="32dp" />
-
-        <TextView
-            android:id="@+id/tv_facebook_link"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/preview"
-            android:textColor="#737373"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp"
-
-        android:paddingTop="8dp"
-        android:focusable="true">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="32dp"
-            android:tint="#737373"
-            android:layout_marginEnd="32dp"
+            android:id="@+id/iv_facebook"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="start"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:contentDescription="@string/todo" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/share"
-            android:textColor="#737373"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp"
-
-        android:paddingTop="8dp"
-        android:focusable="true">
+        <ImageView
+            android:id="@+id/iv_twitter"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:contentDescription="@string/todo" />
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="32dp"
-            android:tint="#737373"
-            android:contentDescription="@string/todo"
-            android:layout_marginEnd="32dp" />
+            android:id="@+id/iv_mail"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="end"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:contentDescription="@string/todo" />
+    </FrameLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/get_link"
-            android:textColor="#737373"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:focusable="true">
+        android:layout_height="368dp"
+        android:layout_marginTop="127dp">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="32dp"
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            android:tint="#737373"
-            android:contentDescription="@string/todo"
-            android:layout_marginEnd="32dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/make_a_copy"
-            android:textColor="#737373"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp"
-
-        android:paddingTop="8dp"
-        android:focusable="true">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="32dp"
-            android:tint="#737373"
-            android:contentDescription="@string/todo"
-            android:layout_marginEnd="32dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/email_a_copy"
-            android:textColor="#737373"
-            android:textSize="16sp" />
-    </LinearLayout>
-</LinearLayout>
+            <TextView
+                android:id="@+id/tv_more_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center"
+                android:scrollbars="vertical"
+                android:text="rrrrrr"
+                android:textSize="25sp" />
+        </android.support.v4.widget.NestedScrollView>
+    </RelativeLayout>
+</RelativeLayout>

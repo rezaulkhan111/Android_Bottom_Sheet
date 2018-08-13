@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
@@ -11,6 +12,7 @@ import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.text.method.ScrollingMovementMethod;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,20 +20,26 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import junit.framework.Test;
+
 public class MainActivity extends AppCompatActivity {
     //   LinearLayout llBottomSheet;
-    //  BottomSheetBehavior bottomSheetBehavior;
+    BottomSheetBehavior bottomSheetBehavior;
     //  Button b;
     TextView textView;
     BottomSheetDialog bottomSheetDialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //  llBottomSheet = (LinearLayout)findViewById(R.id.bs_bbbbbbbbbb);
         //  bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
@@ -63,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    A a = new A() {
+        @Override
+        public void callback() {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("www.google.com"));
+            startActivity(intent);
+        }
+    };
+
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -74,10 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.menu_search_bar:
-                Menu menu2=new Menu() {
+                Menu menu2 = new Menu() {
                     @Override
                     public MenuItem add(CharSequence title) {
                         return null;
@@ -225,13 +240,30 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void showBottomSheetDialog() {
+        ImageView imageView1, imageView2, imageView3;
         View view = getLayoutInflater().inflate(R.layout.bottom_sheet, null);
+
+        String text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaan\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmm";
+
+        TextView textView = view.findViewById(R.id.tv_more_info);
+        imageView1 = view.findViewById(R.id.iv_facebook);
+        imageView2 = view.findViewById(R.id.iv_twitter);
+        imageView3 = view.findViewById(R.id.iv_mail);
+
+        imageView1.setImageResource(R.mipmap.facebook_round);
+        imageView2.setImageResource(R.mipmap.ic_twitter);
+        imageView3.setImageResource(R.mipmap.ic_mail);
+
+        textView.setMovementMethod(ScrollingMovementMethod.getInstance());
+        textView.setVerticalScrollBarEnabled(true);
+        textView.setText(text);
 
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         dialog.setContentView(view);
         dialog.show();
 
     }
+
 
     //@Override
 //    public void onClick(View v) {
@@ -244,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-    public void Show_Search(Menu menu){
+    public void Show_Search(Menu menu) {
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView;
@@ -265,4 +297,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+}
+
+interface A {
+    void callback();
 }
