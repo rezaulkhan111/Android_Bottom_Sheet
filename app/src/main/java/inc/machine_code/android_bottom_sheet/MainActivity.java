@@ -24,14 +24,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import junit.framework.Test;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     //   LinearLayout llBottomSheet;
     BottomSheetBehavior bottomSheetBehavior;
     //  Button b;
-    TextView textView;
+
     BottomSheetDialog bottomSheetDialog;
 
 
@@ -41,43 +42,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        //  llBottomSheet = (LinearLayout)findViewById(R.id.bs_bbbbbbbbbb);
-        //  bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
-
-//        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-//        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-//        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-
-//        // set the peek height
-//        bottomSheetBehavior.setSkipCollapsed(true);
-//        bottomSheetBehavior.setPeekHeight(30);
-//
-//// set hideable or not
-//        bottomSheetBehavior.setHideable(false);
-//
-//// set callback for changes
-//        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-//            @Override
-//            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-//
-//            }
-//
-//            @Override
-//            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-//
-//            }
-//        });
-
 
     }
-
-    A a = new A() {
-        @Override
-        public void callback() {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("www.google.com"));
-            startActivity(intent);
-        }
-    };
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
@@ -87,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
-
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -225,27 +190,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//
-//        View view=getLayoutInflater().inflate(R.layout.bottom_sheet,null);
-//        BottomSheetDialog dialog=new BottomSheetDialog(this);
-//
-//        dialog.setContentView(view);
-//        dialog.show();
-//        return true;
-//    }
-
-
     public void showBottomSheetDialog() {
-        ImageView imageView1, imageView2, imageView3;
         View view = getLayoutInflater().inflate(R.layout.bottom_sheet, null);
+        ImageView imageView1, imageView2, imageView3;
+        TextView textView;
+        String text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaan\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmm\n" +
+                "mmmmmmmmmmmmmmmmmmmmmm";
 
-        String text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaan\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmm\nmmmmmmmmmmmmmmmmmmmmmm";
-
-        TextView textView = view.findViewById(R.id.tv_more_info);
+        textView = view.findViewById(R.id.tv_more_info);
         imageView1 = view.findViewById(R.id.iv_facebook);
         imageView2 = view.findViewById(R.id.iv_twitter);
         imageView3 = view.findViewById(R.id.iv_mail);
@@ -253,6 +222,7 @@ public class MainActivity extends AppCompatActivity {
         imageView1.setImageResource(R.mipmap.facebook_round);
         imageView2.setImageResource(R.mipmap.ic_twitter);
         imageView3.setImageResource(R.mipmap.ic_mail);
+
 
         textView.setMovementMethod(ScrollingMovementMethod.getInstance());
         textView.setVerticalScrollBarEnabled(true);
@@ -262,19 +232,15 @@ public class MainActivity extends AppCompatActivity {
         dialog.setContentView(view);
         dialog.show();
 
+        imageView1.setOnClickListener(this);
+
     }
 
-
-    //@Override
-//    public void onClick(View v) {
-//
-//        View view = getLayoutInflater().inflate(R.layout.bottom_sheet, null);
-//
-//        BottomSheetDialog dialog = new BottomSheetDialog(this);
-//        dialog.setContentView(view);
-//        dialog.show();
-//    }
-
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+        startActivity(intent);
+    }
 
     public void Show_Search(Menu menu) {
 
@@ -283,8 +249,6 @@ public class MainActivity extends AppCompatActivity {
         searchView = (SearchView) menu.findItem(R.id.menu_search_bar).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -297,10 +261,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
 
-interface A {
-    void callback();
-}
+
