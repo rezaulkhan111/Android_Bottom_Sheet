@@ -4,11 +4,13 @@ import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -49,140 +51,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.item_and_search_menu, menu);
-        super.onCreateOptionsMenu(menu);
-
+        Show_Search(menu);
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_search_bar:
-                Menu menu2 = new Menu() {
-                    @Override
-                    public MenuItem add(CharSequence title) {
-                        return null;
-                    }
-
-                    @Override
-                    public MenuItem add(int titleRes) {
-                        return null;
-                    }
-
-                    @Override
-                    public MenuItem add(int groupId, int itemId, int order, CharSequence title) {
-                        return null;
-                    }
-
-                    @Override
-                    public MenuItem add(int groupId, int itemId, int order, int titleRes) {
-                        return null;
-                    }
-
-                    @Override
-                    public SubMenu addSubMenu(CharSequence title) {
-                        return null;
-                    }
-
-                    @Override
-                    public SubMenu addSubMenu(int titleRes) {
-                        return null;
-                    }
-
-                    @Override
-                    public SubMenu addSubMenu(int groupId, int itemId, int order, CharSequence title) {
-                        return null;
-                    }
-
-                    @Override
-                    public SubMenu addSubMenu(int groupId, int itemId, int order, int titleRes) {
-                        return null;
-                    }
-
-                    @Override
-                    public int addIntentOptions(int groupId, int itemId, int order, ComponentName caller, Intent[] specifics, Intent intent, int flags, MenuItem[] outSpecificItems) {
-                        return 0;
-                    }
-
-                    @Override
-                    public void removeItem(int id) {
-
-                    }
-
-                    @Override
-                    public void removeGroup(int groupId) {
-
-                    }
-
-                    @Override
-                    public void clear() {
-
-                    }
-
-                    @Override
-                    public void setGroupCheckable(int group, boolean checkable, boolean exclusive) {
-
-                    }
-
-                    @Override
-                    public void setGroupVisible(int group, boolean visible) {
-
-                    }
-
-                    @Override
-                    public void setGroupEnabled(int group, boolean enabled) {
-
-                    }
-
-                    @Override
-                    public boolean hasVisibleItems() {
-                        return false;
-                    }
-
-                    @Override
-                    public MenuItem findItem(int id) {
-                        return null;
-                    }
-
-                    @Override
-                    public int size() {
-                        return 0;
-                    }
-
-                    @Override
-                    public MenuItem getItem(int index) {
-                        return null;
-                    }
-
-                    @Override
-                    public void close() {
-
-                    }
-
-                    @Override
-                    public boolean performShortcut(int keyCode, KeyEvent event, int flags) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean isShortcutKey(int keyCode, KeyEvent event) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean performIdentifierAction(int id, int flags) {
-                        return false;
-                    }
-
-                    @Override
-                    public void setQwertyMode(boolean isQwerty) {
-
-                    }
-                };
-                Show_Search(menu2);
-                return true;
             case R.id.setting:
                 showBottomSheetDialog();
-
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -242,12 +118,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
-    public void Show_Search(Menu menu) {
-
+    public boolean Show_Search(Menu menu) {
+        MenuItem searchViewMenuItem = menu.findItem(R.id.menu_search_bar);
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView;
-        searchView = (SearchView) menu.findItem(R.id.menu_search_bar).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView = (SearchView) MenuItemCompat.getActionView(searchViewMenuItem);
+        int searchImgId = android.support.v7.appcompat.R.id.search_button; // I used the explicit layout ID of searchview's ImageView
+        ImageView v = (ImageView) searchView.findViewById(searchImgId);
+        v.setImageResource(R.drawable.ic_search_icon);
+//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -260,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return false;
             }
         });
+        return true;
     }
 }
 
